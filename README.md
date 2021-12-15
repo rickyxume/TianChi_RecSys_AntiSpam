@@ -3,5 +3,5 @@
 
 [详细方案文章分享](https://zhuanlan.zhihu.com/p/444425375?)
 
-预热代码见 .\warmup_util.py
+预热代码见 warmup_util.py
 
