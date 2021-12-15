@@ -1,0 +1,5 @@
+#! /usr/bin/fish
+# ulimit defined below will override configuration in Occlum.json
+ulimit -Sv 29000000 # virtual memory size 100M (including heap, stack, mmap size)
+
+command /bin/python3 $argv

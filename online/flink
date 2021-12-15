@@ -1,0 +1,14 @@
+#! /usr/bin/fish
+# ulimit defined below will override configuration in Occlum.json
+ulimit -Sv 7240000
+
+command /usr/lib/jvm/java-11-openjdk-amd64/bin/java \
+        -Xmx800m -XX:-UseCompressedOops -XX:MaxMetaspaceSize=256m -XX:ActiveProcessorCount=2 \
+        -Dos.name=Linux \
+        -Dlog.file=/host/task.log \
+        -Dlog4j.configurationFile=file:/opt/flink-1.11.2/conf/log4j.properties \
+        -Dlogback.configurationFile=file:/opt/flink-1.11.2/conf/logback.xml \
+	-Djdk.lang.Process.launchMechanism=posix_spawn \
+        -classpath /opt/flink-1.11.2/lib/analytics-zoo-bigdl_0.12.2-spark_2.4.3-0.10.0-serving.jar:/opt/flink-1.11.2/lib/flink-table-blink_2.11-1.11.2.jar:/opt/flink-1.11.2/lib/flink-table_2.11-1.11.2.jar:/opt/flink-1.11.2/lib/flink-dist_2.11-1.11.2.jar:/opt/flink-1.11.2/lib/log4j-1.2-api-2.12.1.jar:/opt/flink-1.11.2/lib/log4j-slf4j-impl-2.12.1.jar:/opt/flink-1.11.2/lib/log4j-api-2.12.1.jar:/opt/flink-1.11.2/lib/flink-csv-1.11.2.jar:/opt/flink-1.11.2/lib/flink-json-1.11.2.jar:/opt/flink-1.11.2/lib/flink-shaded-zookeeper-3.4.14.jar:/opt/flink-1.11.2/lib/log4j-core-2.12.1.jar org.apache.flink.client.cli.CliFrontend \
+        $argv \
+        > /host/task.log
